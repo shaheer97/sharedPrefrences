@@ -34,7 +34,7 @@ SharedPreferences sharedPreferences;
 
 private static final String SHARED_PREF_NAME="my_pref";
 private static final String KEY_NAME="name";
-private static final String KEY_EMAIL="email";
+private static final String KEY_EMAIL="email.";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
