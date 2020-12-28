@@ -1,9 +1,12 @@
 package com.example.sharedprefrences;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Notification;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -17,8 +20,12 @@ import com.example.sharedprefrences.HelperClasses.FeaturedHelperClass;
 
 import java.util.ArrayList;
 
+import static com.example.sharedprefrences.App.CHANNEL_1_ID;
+import static com.example.sharedprefrences.App.CHANNEL_2_ID;
+
 public class MainActivity extends AppCompatActivity {
 
+    private NotificationManagerCompat notificationManager;
 
     EditText editText_name,editText_email;
     Button button_save;
@@ -33,6 +40,8 @@ private static final String KEY_EMAIL="email";
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        notificationManager =NotificationManagerCompat.from(this);
 
         editText_name=findViewById(R.id.edit_text_name);
         editText_email=findViewById(R.id.edit_text_email);
@@ -76,8 +85,21 @@ if (name!=null){
     }
 
 
+public void sendOnChannel1(View v){
+
+    Notification notification=new NotificationCompat.Builder(this,CHANNEL_1_ID).setSmallIcon(R.drawable.ic_baseline_looks_one_24).setContentTitle(KEY_NAME).setContentText(KEY_EMAIL).setPriority(NotificationCompat.PRIORITY_HIGH).setCategory(NotificationCompat.CATEGORY_MESSAGE).build();
 
 
+    notificationManager.notify(1,notification);
+}
+//public void sendOnChannel2(View v){
+
+  //  Notification notification=new NotificationCompat.Builder(this,CHANNEL_2_ID).setSmallIcon(R.drawable.ic_baseline_looks_two_24).setContentTitle(KEY_NAME).setContentText(KEY_EMAIL).setPriority(NotificationCompat.PRIORITY_LOW).build();
+
+
+    //notificationManager.notify(2,notification);
+
+//}
 
 
 }
